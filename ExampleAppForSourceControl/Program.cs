@@ -17,6 +17,11 @@ namespace ExampleAppForSourceControl
 
             dynamicArray.Remove(5);
 
+
+            foreach (var item in dynamicArray)
+            {
+                Console.WriteLine(item);
+            }
         }       
     }
 }

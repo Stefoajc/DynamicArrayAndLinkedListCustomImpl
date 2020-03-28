@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DynamicArrayNaiveImplementation
 {
-    public class DynamicArray<T> : IDynamicArray<T>
+    public class DynamicArray<T> : IDynamicArray<T>, IEnumerable<T>
     {
         private T[] array = new T[10];
 
@@ -33,7 +35,7 @@ namespace DynamicArrayNaiveImplementation
                 array[array.Length - 1] = element;
             }
 
-        }
+        }        
 
         public T GetValue(int index)
         {
@@ -77,6 +79,16 @@ namespace DynamicArrayNaiveImplementation
 
             throw new Exception();
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in array)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
     }
 
 

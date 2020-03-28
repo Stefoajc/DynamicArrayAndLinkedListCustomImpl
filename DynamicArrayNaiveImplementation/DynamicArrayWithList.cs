@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace DynamicArrayNaiveImplementation
 {
@@ -16,6 +17,8 @@ namespace DynamicArrayNaiveImplementation
             array.Add(item);
         }
 
+        
+
         public T GetValue(int index)
         {
             return array[index];
@@ -26,5 +29,15 @@ namespace DynamicArrayNaiveImplementation
             var element = array[index];
             array.Remove(element);
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in array)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
     }
 }
