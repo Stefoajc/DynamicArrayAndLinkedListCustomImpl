@@ -10,7 +10,7 @@ namespace DynamicArrayNaiveImplementation
     /// </summary>
     public class DynamicArrayWithList<T> : IDynamicArray<T>
     {
-        private List<T> array;
+        private readonly List<T> array = new List<T>();
 
         public void Add(T item)
         {
