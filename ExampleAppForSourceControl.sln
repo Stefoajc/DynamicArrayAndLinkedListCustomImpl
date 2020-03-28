@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleAppForSourceControl"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArrayNaiveImplementation", "DynamicArrayNaiveImplementation\DynamicArrayNaiveImplementation.csproj", "{381311E7-C0EB-4C5C-BBBC-91FB49061714}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedListNaiveImplementation", "LinkedListNaiveImplementation\LinkedListNaiveImplementation.csproj", "{4AF11EC7-E03C-401F-BC0E-B288431DC2B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{381311E7-C0EB-4C5C-BBBC-91FB49061714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381311E7-C0EB-4C5C-BBBC-91FB49061714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{381311E7-C0EB-4C5C-BBBC-91FB49061714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF11EC7-E03C-401F-BC0E-B288431DC2B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF11EC7-E03C-401F-BC0E-B288431DC2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF11EC7-E03C-401F-BC0E-B288431DC2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF11EC7-E03C-401F-BC0E-B288431DC2B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

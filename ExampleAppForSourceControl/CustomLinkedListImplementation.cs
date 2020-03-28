@@ -1,66 +1,108 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ExampleAppForSourceControl
 {
-    public class CustomLinkedListImplementation
+    public class CustomLinkedListImplementation<T> : IEnumerable<T>, ICustomLinkedListImplementation<T>
     {
-        public Node FirstElement { get; private set; }
-        public Node LastElement { get; private set; }
+        private Node<T> FirstElement { get; set; }
+        private Node<T> LastElement { get; set; }
 
-        public void AddFirst(string item)
+        public void AddFirst(T item)
         {
             if (IsEmpty())
             {
-                FirstElement = LastElement = new Node(item);
+                FirstElement = LastElement = new Node<T>(item);
             }
             else
             {
-                var itemToAdd = new Node(item, FirstElement);
-                FirstElement.Previous = itemToAdd;
-                FirstElement = itemToAdd;
+                var nodeToAdd = new Node<T>(item, FirstElement);
+                FirstElement.Previous = nodeToAdd;
+                FirstElement = nodeToAdd;
             }
-            //...
         }
 
 
 
-        public void AddLast(string item)
+        public void AddLast(T item)
         {
-
+            if (IsEmpty())
+            {
+                FirstElement = LastElement = new Node<T>(item);
+            }
+            else
+            {
+                var nodeToAdd = new Node<T>(item, null, LastElement);
+                LastElement.Next = nodeToAdd;
+                LastElement = nodeToAdd;
+            }
         }
 
         public void RemoveFirst()
         {
-
-            throw new NotImplementedException();
+            if (IsListOfOne())
+            {
+                FirstElement = LastElement = null;
+            }
+            else
+            {
+                //Save reference to the first element
+                var oldFirstElement = FirstElement;
+                //Set the current First with the next
+                FirstElement = FirstElement.Next;
+                //Remove the link between the first and the second element 
+                //(FirstElement is the current second, oldFirstElement is the original first)
+                FirstElement.Previous = oldFirstElement.Next = null;
+            }
         }
 
         public void RemoveLast()
         {
-
-            throw new NotImplementedException();
+            if (IsListOfOne())
+            {
+                FirstElement = LastElement = null;
+            }
+            else
+            {
+                //Save reference to the last element
+                var oldLastElement = LastElement;
+                //Set the current Last with the previous
+                LastElement = LastElement.Previous;
+                //Remove the link between the last and the one before the last 
+                //(LastElement is the current second last, oldLastElement is the original last)
+                oldLastElement.Previous = LastElement.Next = null;
+            }
         }
 
-        public Node Find(string item)
+        public IEnumerator<T> GetEnumerator()
         {
-            return null;
+            var current = FirstElement;
+            yield return current.Item;
+
+            while (current.Next != null)
+            {
+                current = current.Next;
+                yield return current.Item;
+            }
         }
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         private bool IsEmpty() => FirstElement == null && LastElement == null;
 
+        private bool IsListOfOne() => FirstElement == LastElement;
     }
 
-    public class Node
+    public class Node<T>
     {
-        public string Item { get; private set; }
-        public Node Next { get; set; }
-        public Node Previous { get; set; }
+        public T Item { get; private set; }
+        public Node<T> Next { get; set; }
+        public Node<T> Previous { get; set; }
 
-        public Node(string item
-            , Node next = null
-            , Node previous = null)
+        public Node(T item
+            , Node<T> next = null
+            , Node<T> previous = null)
         {
             Item = item;
             Next = next;

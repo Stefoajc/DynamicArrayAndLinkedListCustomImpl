@@ -15,9 +15,7 @@ namespace DynamicArrayNaiveImplementation
         public void Add(T item)
         {
             array.Add(item);
-        }
-
-        
+        }        
 
         public T GetValue(int index)
         {
