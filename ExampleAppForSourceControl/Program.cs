@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DynamicArrayNaiveImplementation;
+using System;
+using System.Collections.Generic;
 
 namespace ExampleAppForSourceControl
 {
@@ -6,7 +8,15 @@ namespace ExampleAppForSourceControl
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-        }
+            IDynamicArray<int> dynamicArray = new DynamicArray<int>();
+
+            for (int i = 1; i < 20; i++)
+            {
+                dynamicArray.Add(i);
+            }
+
+            dynamicArray.Remove(5);
+
+        }       
     }
 }
